@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  chtime:
+    # Build from source
+    build: .
+    container_name: chtime-simple
+    ports:
+      - "7777:3000"
+    environment:
+      - NODE_ENV=development
+      - NEXT_TELEMETRY_DISABLED=1
+    restart: unless-stopped 
