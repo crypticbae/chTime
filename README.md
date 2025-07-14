@@ -22,21 +22,20 @@ A modern, bilingual time tracking application built with Next.js. Track your wor
 # Pull and run the latest version
 docker run -d \
   --name chtime \
-  -p 3000:3000 \
+  -p 7777:3000 \
   --restart unless-stopped \
-  ghcr.io/REPLACE-WITH-YOUR-USERNAME/chtime:latest
+  ghcr.io/crypticbae/chtime:latest
 
-# Access at http://localhost:3000
+# Access at http://localhost:7777
 ```
 
 ### Option 2: Using Docker Compose
 
 ```bash
 # Download the compose file
-curl -o docker-compose.yml https://raw.githubusercontent.com/REPLACE-WITH-YOUR-USERNAME/chtime/main/docker-compose.prod.yml
+curl -o docker-compose.yml https://raw.githubusercontent.com/crypticbae/chTime/master/docker-compose.prod.yml
 
-# Edit the image name (replace 'your-username' with your actual GitHub username)
-# Then start the application
+# Start the application
 docker-compose up -d
 ```
 
@@ -44,8 +43,8 @@ docker-compose up -d
 
 ```bash
 # Clone the repository
-git clone https://github.com/REPLACE-WITH-YOUR-USERNAME/chtime.git
-cd chtime
+git clone https://github.com/crypticbae/chTime.git
+cd chTime
 
 # Build and run with Docker Compose
 docker-compose up -d --build
@@ -77,7 +76,7 @@ NEXT_TELEMETRY_DISABLED=1
 To run on a different port:
 
 ```bash
-docker run -p 8080:3000 ghcr.io/REPLACE-WITH-YOUR-USERNAME/chtime:latest
+docker run -p 8888:3000 ghcr.io/crypticbae/chtime:latest
 ```
 
 ## 📖 Detailed Documentation
@@ -123,11 +122,11 @@ chTime uses browser-based IndexedDB for data storage:
 
 ```bash
 # Pull latest version
-docker pull ghcr.io/REPLACE-WITH-YOUR-USERNAME/chtime:latest
+docker pull ghcr.io/crypticbae/chtime:latest
 
 # Restart container
 docker stop chtime && docker rm chtime
-docker run -d --name chtime -p 3000:3000 ghcr.io/REPLACE-WITH-YOUR-USERNAME/chtime:latest
+docker run -d --name chtime -p 7777:3000 ghcr.io/crypticbae/chtime:latest
 
 # Or with docker-compose
 docker-compose pull && docker-compose up -d
@@ -139,8 +138,8 @@ docker-compose pull && docker-compose up -d
 
 ```bash
 # Clone repository
-git clone https://github.com/REPLACE-WITH-YOUR-USERNAME/chtime.git
-cd chtime
+git clone https://github.com/crypticbae/chTime.git
+cd chTime
 
 # Install dependencies
 npm install
@@ -168,7 +167,7 @@ npm start
 docker build -t chtime:dev .
 
 # Run development container
-docker run -p 3000:3000 chtime:dev
+docker run -p 7777:3000 chtime:dev
 
 # Or use the build script
 ./scripts/docker-build.sh
@@ -199,15 +198,15 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### Common Issues
 
-- **Port already in use**: Change the port mapping `-p 3001:3000`
+- **Port already in use**: Change the port mapping `-p 8888:3000`
 - **Container won't start**: Check Docker logs with `docker logs chtime`
 - **Data loss**: Regular PDF exports are recommended for backup
 
 ### Getting Help
 
-- 🐛 **Bug Reports**: [Create an issue](https://github.com/REPLACE-WITH-YOUR-USERNAME/chtime/issues)
-- 💡 **Feature Requests**: [Start a discussion](https://github.com/REPLACE-WITH-YOUR-USERNAME/chtime/discussions)
-- 📧 **Email**: your-email@example.com
+- 🐛 **Bug Reports**: [Create an issue](https://github.com/crypticbae/chTime/issues)
+- 💡 **Feature Requests**: [Start a discussion](https://github.com/crypticbae/chTime/discussions)
+- 📧 **GitHub**: [@crypticbae](https://github.com/crypticbae)
 
 ## 🎉 Acknowledgments
 
