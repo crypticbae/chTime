@@ -44,7 +44,7 @@ export function TimeEntryEditor({ isOpen, onClose }: TimeEntryEditorProps) {
   }, [isOpen, selectedDate, selectedUserId])
 
   const loadUsers = () => {
-    // Get all users from localStorage
+    // Get all users from localStorage - using consistent key with auth.ts
     const usersJson = localStorage.getItem('chtime-users')
     if (usersJson) {
       const users = JSON.parse(usersJson)
@@ -123,30 +123,25 @@ export function TimeEntryEditor({ isOpen, onClose }: TimeEntryEditorProps) {
     const targetUserId = selectedUserId || currentUser?.id
     if (!targetUserId) return
 
-    const entry: TimeEntry = {
-      id: `entry-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-      userId: targetUserId,
-      type: newEntry.type as TimeEntry['type'],
-      timestamp: new Date(newEntry.timestamp),
-      timezone: newEntry.timezone || 'Europe/Berlin'
-    }
-
     try {
-      const currentEntries = db.getTimeEntries()
-      const updatedEntries = [...currentEntries, entry]
-      
-      localStorage.setItem('chtime-time-entries', JSON.stringify(updatedEntries.map(e => ({
-        ...e,
-        timestamp: e.timestamp.toISOString()
-      }))))
+      // Use the proper database API instead of direct localStorage access
+      const savedEntry = db.saveTimeEntry({
+        type: newEntry.type as TimeEntry['type'],
+        timestamp: new Date(newEntry.timestamp)
+      }, targetUserId)
 
-      setNewEntry({
-        type: 'clock-in',
-        timestamp: new Date(),
-        timezone: 'Europe/Berlin'
-      })
-      setShowAddForm(false)
-      loadTimeEntries()
+      if (savedEntry) {
+        alert(t.entryAdded)
+        setNewEntry({
+          type: 'clock-in',
+          timestamp: new Date(),
+          timezone: 'Europe/Berlin'
+        })
+        setShowAddForm(false)
+        loadTimeEntries()
+      } else {
+        alert(t.errorAdding)
+      }
     } catch (error) {
       console.error('Error adding entry:', error)
       alert(t.errorAdding)
