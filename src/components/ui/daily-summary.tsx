@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Calendar, Clock, FileText, X, Download, TrendingUp, BarChart3, Users, CalendarRange, ChevronLeft, ChevronRight, Coffee, Target } from 'lucide-react'
-import { TimeEntry } from '@/lib/types'
+import { TimeEntry, UserSettings, WorkDay } from '@/lib/types'
 import { calculateWorkDay, formatDuration } from '@/lib/utils'
 import { useSettings } from '@/contexts/SettingsContext'
 import { authManager } from '@/lib/auth'
